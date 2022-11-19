@@ -9,7 +9,7 @@ const Home = () => {
           src="../../Assets/bg.jpg"
           className="card-img"
           alt="..."
-          height="600vh"
+          height="800vh"
           //   width="100px"
         />
         <div className="card-img-overlay d-flex flex-column justify-content-center">

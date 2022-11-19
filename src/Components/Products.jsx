@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { NavLink } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ const Products = () => {
         setData(await response.clone().json());
         setFilter(await response.json());
         setLoading(false);
-        console.log(filter);
+        // console.log(filter);
       }
       return () => {
         componentMounted = false;
@@ -53,33 +54,33 @@ const Products = () => {
   const ShowProducts = () => {
     return (
       <>
-        <div className="buttons d-flex justify-content-center mb-5 pb-5">
+        <div className="buttons column flex-wrap d-flex justify-content-center mb-5 pb-5">
           <button
-            className="btn btn-outline-dark me-2"
+            className="btn btn-outline-dark me-2 mt-2"
             onClick={() => setFilter(data)}
           >
             ALL
           </button>
           <button
-            className="btn btn-outline-dark me-2"
+            className="btn btn-outline-dark me-2 mt-2"
             onClick={() => filterProduct("women's clothing")}
           >
             WOMEN'S
           </button>
           <button
-            className="btn btn-outline-dark me-2"
+            className="btn btn-outline-dark me-2 mt-2"
             onClick={() => filterProduct("men's clothing")}
           >
             MEN'S
           </button>
           <button
-            className="btn btn-outline-dark me-2"
+            className="btn btn-outline-dark me-2 mt-2"
             onClick={() => filterProduct("jewelery")}
           >
             JEWELERY
           </button>
           <button
-            className="btn btn-outline-dark me-2"
+            className="btn btn-outline-dark me-2 mt-2"
             onClick={() => filterProduct("electronics")}
           >
             ELECTRONICS
@@ -89,21 +90,24 @@ const Products = () => {
           return (
             <>
               <div className="col-md-3 mb-4">
-                <div class="card h-100 text-center p-4" key={product.id}>
+                <div className="card h-100 text-center p-4" key={product.id}>
                   <img
                     src={product.image}
-                    class="card-img-top"
+                    className="card-img-top"
                     alt={product.title}
                     height="250px"
                   />
-                  <div class="card-body">
-                    <h5 class="card-title">
+                  <div className="card-body">
+                    <h5 className="card-title">
                       {product.title.substring(0, 12)}...
                     </h5>
-                    <p class="card-text fw-bold">${product.price}</p>
-                    <a href="#" class="btn btn-outline-dark">
-                      Add to cart{" "}
-                    </a>
+                    <p className="card-text fw-bold">${product.price}</p>
+                    <NavLink
+                      to={`/products/${product.id}`}
+                      className="btn btn-dark"
+                    >
+                      Go to Product{" "}
+                    </NavLink>
                   </div>
                 </div>
               </div>
